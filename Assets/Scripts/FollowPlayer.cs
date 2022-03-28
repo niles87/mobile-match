@@ -23,10 +23,13 @@ public class FollowPlayer : MonoBehaviour
     {
         if (IsPlayerNearBy())
         {
+            float rotationSpeed = 90f * Time.deltaTime;
+
             Vector3 positionDiff = _player.position - transform.position;
 
             Quaternion rotation = Quaternion.LookRotation(positionDiff, Vector3.up);
-            transform.rotation = rotation;
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotationSpeed);
         }
     }
 
