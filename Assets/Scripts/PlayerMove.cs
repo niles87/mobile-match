@@ -8,7 +8,6 @@ public class PlayerMove : MonoBehaviour
     public float force = 50f;
 
     private Vector3 moveVector;
-    private Vector3 lookDirection = Vector3.one;
 
     private Rigidbody rb;
 
@@ -23,7 +22,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //RotatePlayer(lookDirection);
+
     }
 
     private void FixedUpdate()
@@ -38,26 +37,8 @@ public class PlayerMove : MonoBehaviour
         moveVector = new(pos.x, 0, pos.y);
     }
 
-    public void OnLook(InputValue input)
-    {
-        Vector2 dir = input.Get<Vector2>();
-
-        lookDirection = new(0, dir.y, 0);
-    }
-
     private void MovePlayer(Vector3 vector)
     {
         rb.AddForce(force * vector);
-    }
-
-    private void RotatePlayer(Vector3 stickDir)
-    {
-        float rotationSpeed = 90f * Time.deltaTime;
-
-        Vector3 posDif = stickDir - transform.position;
-
-        Quaternion rotation = Quaternion.LookRotation(posDif, Vector3.up);
-
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, rotationSpeed);
     }
 }
