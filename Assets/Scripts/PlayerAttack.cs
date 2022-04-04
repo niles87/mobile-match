@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public GameObject weapon;
+    public GameObject weaponPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,9 @@ public class PlayerAttack : MonoBehaviour
     {
         if (input.isPressed)
         {
-            weapon.GetComponent<SwingWeapon>().swing = true;
+            var obj = Instantiate(weaponPrefab, transform);
+
+            obj.GetComponent<SwingWeapon>().player = transform;
         }
     }
 }

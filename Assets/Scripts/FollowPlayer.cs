@@ -50,19 +50,24 @@ public class FollowPlayer : MonoBehaviour
         return false;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.name == "Player")
+        if (other.name == "Player")
         {
             stopMovingForward = true;
         }
+
+        if (other.name == "Weapon")
+        {
+
+        }
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject.name == "Player")
+        if (other.name == "Player")
         {
             stopMovingForward = false;
-        }
+        }   
     }
 }
